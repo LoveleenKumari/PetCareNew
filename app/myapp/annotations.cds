@@ -139,9 +139,11 @@ annotate service.PetMedical with @(
         },
      ],
      UI.FieldGroup#PetMedicalData : { Data : [
-        { Value : MedicalID },
-        { Value : Notes     },
-        { Value : Title    }
+        { Value : MedicalID,  Label : 'Medical Id' },
+        { Value : Notes, Label: 'Notes'      },
+        { Value : Title, Label: 'Title'    },
+        { Value : VaccinationDate, Label: 'Vaccination Date'    },
+        { Value : VaccinationExpiryDate, Label: 'Vaccination Expiry Date'    },
      ]}
 );
 
