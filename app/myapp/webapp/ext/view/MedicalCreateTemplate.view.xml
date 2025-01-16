@@ -1,0 +1,18 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:macros="sap.fe.macros" 
+    xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" xmlns:layout="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"  id = "MedicalCreate"
+    controllerName="sap.fe.fioriapp.myapp.ext.view.MedicalCreateTemplate">
+    <Page id="MedicalCreateTemplate" title="{i18n>MedicalCreateTemplateTitle}">
+        <content>
+            <Panel headerText="Pet Medical Details">
+			    <macros:Form metaPath="@com.sap.vocabularies.UI.v1.FieldGroup#PetMedicalData" id="idPetMedical"/>
+		    </Panel>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                    <Button text="Cancel" press="cancel" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

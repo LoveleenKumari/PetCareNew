@@ -1,0 +1,165 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "sap.fe.fioriapp.myapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.16.1",
+      "toolsId": "9e2848eb-00bd-441e-9e87-412d99e82832"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/processor/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.131.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.fe.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sap.fe.fioriapp.myapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "PetCareList",
+          "target": "PetCareList"
+        },
+        {
+          "pattern": "PetCare({key}):?query:",
+          "name": "PetCareObjectPage",
+          "target": "PetCareObjectPage"
+        },
+        {
+          "name": "PetMedicalMedicalCreateTemplatePage",
+          "pattern": "PetCare({key})/to_PetMedical({to_PetMedicalKey}):?query:",
+          "target": "PetMedicalMedicalCreateTemplatePage"
+        }
+      ],
+      "targets": {
+        "PetCareList": {
+          "type": "Component",
+          "id": "PetCareList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/PetCare",
+              "variantManagement": "Page",
+              "navigation": {
+                "PetCare": {
+                  "detail": {
+                    "route": "PetCareObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PetCareObjectPage": {
+          "type": "Component",
+          "id": "PetCareObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/PetCare",
+              "navigation": {
+                "to_PetMedical": {
+                  "detail": {
+                    "route": "PetMedicalMedicalCreateTemplatePage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PetMedicalMedicalCreateTemplatePage": {
+          "type": "Component",
+          "id": "PetMedicalMedicalCreateTemplatePage",
+          "name": "sap.fe.core.fpm",
+          "options": {
+            "settings": {
+              "viewName": "sap.fe.fioriapp.myapp.ext.view.MedicalCreateTemplate",
+              "contextPath": "/PetCare/to_PetMedical"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
